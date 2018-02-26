@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\gabinete */
 
-$this->title = 'Create Gabinete';
-$this->params['breadcrumbs'][] = ['label' => 'Gabinetes', 'url' => ['index']];
+$this->title = 'Crear Gabinete';
+$this->params['breadcrumbs'][] = ['label' => 'Gabinete', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gabinete-create">

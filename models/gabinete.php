@@ -35,9 +35,9 @@ class gabinete extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'cargo', 'nombre', 'correo'], 'required'],
-            [['id', 'orden'], 'default', 'value' => null],
-            [['id', 'orden'], 'integer'],
+            [['cargo', 'nombre', 'correo', 'detalle', 'telefono', 'resumen', 'orden', 'activo', 'genero'], 'required'],
+            [['orden'], 'default', 'value' => null],
+            [['orden'], 'integer'],
             [['activo', 'genero'], 'string'],
             [['cargo'], 'string', 'max' => 101],
             [['nombre'], 'string', 'max' => 102],
@@ -46,7 +46,6 @@ class gabinete extends \yii\db\ActiveRecord
             [['telefono2'], 'string', 'max' => 104],
             [['correo'], 'string', 'max' => 105],
             [['resumen'], 'string', 'max' => 1024],
-            [['id'], 'unique'],
         ];
     }
 
@@ -60,8 +59,8 @@ class gabinete extends \yii\db\ActiveRecord
             'cargo' => 'Cargo',
             'nombre' => 'Nombre',
             'detalle' => 'Detalle',
-            'telefono' => 'Telefono',
-            'telefono2' => 'Telefono2',
+            'telefono' => 'Telefono Celular',
+            'telefono2' => 'Telefono Fijo',
             'correo' => 'Correo',
             'resumen' => 'Resumen',
             'orden' => 'Orden',
