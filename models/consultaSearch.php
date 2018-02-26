@@ -72,7 +72,8 @@ class consultaSearch extends consulta
             ->andFilterWhere(['ilike', 'correo_electronico', $this->correo_electronico])
             ->andFilterWhere(['ilike', 'municipio', $this->municipio])
             ->andFilterWhere(['ilike', 'consulta', $this->consulta])
-            ->andFilterWhere(['ilike', 'actualizar_datos', $this->actualizar_datos]);
+            ->andFilterWhere(['ilike', 'actualizar_datos', $this->actualizar_datos])
+            ->orderBy('fecha DESC');
 
         return $dataProvider;
     }

@@ -15,13 +15,13 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= //$form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'apellidos') ?>
+    <?= //$form->field($model, 'apellidos') ?>
 
-    <?= $form->field($model, 'nombres') ?>
+    <?= //$form->field($model, 'nombres') ?>
 
-    <?= $form->field($model, 'cargo') ?>
+    <?= //$form->field($model, 'cargo') ?>
 
     <?= $form->field($model, 'cedula') ?>
 
@@ -31,11 +31,11 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'municipio') ?>
 
-    <?php // echo $form->field($model, 'consulta') ?>
+    <?php echo $form->field($model, 'consulta') ?>
 
     <?php // echo $form->field($model, 'actualizar_datos') ?>
 
-    <?php // echo $form->field($model, 'fecha') ?>
+    <?php echo $form->field($model, 'fecha') ?>
 
     <?php // echo $form->field($model, 'id_concejal') ?>
 

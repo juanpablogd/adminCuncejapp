@@ -19,8 +19,9 @@ use Yii;
  * @property string $actualizar_datos
  * @property string $fecha
  * @property int $id_concejal
+ * @property string $tipo
  */
-class consulta extends \yii\db\ActiveRecord
+class Consulta extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -45,6 +46,7 @@ class consulta extends \yii\db\ActiveRecord
             [['cedula', 'municipio'], 'string', 'max' => 100],
             [['correo_electronico'], 'string', 'max' => 250],
             [['consulta'], 'string', 'max' => 2048],
+            [['tipo'], 'string', 'max' => 7],
             [['cedula'], 'exist', 'skipOnError' => true, 'targetClass' => concejal::className(), 'targetAttribute' => ['cedula' => 'cedula']],
         ];
     }
@@ -67,6 +69,7 @@ class consulta extends \yii\db\ActiveRecord
             'actualizar_datos' => 'Actualizar Datos',
             'fecha' => 'Fecha',
             'id_concejal' => 'Id Concejal',
+            'tipo' => 'Tipo',
         ];
     }
 }

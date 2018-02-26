@@ -73,4 +73,12 @@ class concejal extends \yii\db\ActiveRecord
             'dt_actualizacion' => 'Dt Actualizacion',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConsulta()
+    {
+        return $this->hasMany(consulta::className(), ['id_cc_concejal' => 'cedula']);
+    }
 }

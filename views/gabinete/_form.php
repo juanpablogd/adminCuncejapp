@@ -25,7 +25,7 @@ $dataOrden = [
 
     <?= $form->field($model, 'resumen')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'detalle')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'detalle')->textarea(['rows' => '4']) ?>
 
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
 

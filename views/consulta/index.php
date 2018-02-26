@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Consulta', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Consulta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,20 +24,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'apellidos',
-            'nombres',
-            'cargo',
             'cedula',
-            //'celular',
-            //'correo_electronico',
-            //'municipio',
-            //'consulta',
-            //'actualizar_datos',
-            //'fecha',
-            //'id_concejal',
-
+            [
+                 'label' => 'Nombre',
+                 'format' => 'ntext',
+                 'attribute'=>'nombres',
+                 'value' => function($model) {
+                     return $model->idCcConcejal['nombres'];
+                 },
+            ],
+            [
+                 'label' => 'Apellidos',
+                 'format' => 'ntext',
+                 'attribute'=>'apellidos',
+                 'value' => function($model) {
+                     return $model->idCcConcejal['apellidos'];
+                 },
+            ],
+            'consulta',
+            'fecha',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

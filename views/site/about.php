@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        juan.garzon@cuncinamarca.gov.co - cesar.basurto@cundinamarca.gov.co
+        juan.garzon@cundinamarca.gov.co - cesar.basurto@cundinamarca.gov.co
     </p>
 
     <!-- code><?= __FILE__ ?></code -->
