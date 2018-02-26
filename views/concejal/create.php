@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\concejal */
 
-$this->title = 'Create Concejal';
-$this->params['breadcrumbs'][] = ['label' => 'Concejals', 'url' => ['index']];
+$this->title = 'Crear Concejal';
+$this->params['breadcrumbs'][] = ['label' => 'Concejales', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="concejal-create">

@@ -39,8 +39,8 @@ class concejal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['apellidos', 'nombres', 'cedula', 'municipio'], 'required'],
-            [['orden', 'id_tipousuario'], 'default', 'value' => null],
+            [['apellidos', 'nombres', 'cedula', 'municipio', 'telefono', 'correo_electronico','clave','escolaridad'], 'required'],
+            [['orden'], 'default', 'value' => null],
             [['orden', 'id_tipousuario'], 'integer'],
             [['dt_registro', 'dt_actualizacion'], 'safe'],
             [['apellidos', 'nombres', 'cargo', 'cedula', 'telefono', 'correo_electronico', 'municipio', 'provincia', 'escolaridad'], 'string', 'max' => 100],
@@ -67,7 +67,7 @@ class concejal extends \yii\db\ActiveRecord
             'provincia' => 'Provincia',
             'escolaridad' => 'Escolaridad',
             'orden' => 'Orden',
-            'clave' => 'Clave',
+            'clave' => 'Clave de acceso',
             'id_tipousuario' => 'Id Tipousuario',
             'dt_registro' => 'Dt Registro',
             'dt_actualizacion' => 'Dt Actualizacion',

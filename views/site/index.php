@@ -11,7 +11,9 @@ $this->title = 'Cunceajapp';
 
         <p class="lead">Cuncejapp es la primera aplicación móvil del país, creada por la Gobernación de Cundinamarca bajo la directriz de nuestro Gobernador Jorge Emilio Rey Ángel, a través de las Secretarías de Gobierno, de Tecnología de la Información y Comunicaciones y Prensa, dirigida para todos los Concejales del departamento, donde podrán encontrar servicios de capacitación, asesorías en Línea, normatividad, portal de noticias actualizadas, formación virtual, información sobre el gabinete departamental, Diputados y todo lo referente al gobierno del nuevo liderazgo.</p>
 
-        <p><a class="btn btn-lg btn-success" href="https://play.google.com/store/apps/details?id=cuncejapp.saga.cundinamarca">Desargala aquí</a></p>
+        <p><a class="btn btn-lg btn-success" href="https://play.google.com/store/apps/details?id=cuncejapp.saga.cundinamarca">Android</a></p>
+
+        <p><a class="btn btn-lg btn-success" href="https://itunes.apple.com/us/app/cuncejapp-cundinamarca/id1210512068?l=es&ls=1&mt=8">iOS</a></p>
     </div>
 
     <div class="body-content">

@@ -2,10 +2,26 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
+use app\models\municipio;
+$dataEscolaridad = [
+    "Primaria" => "Primaria",
+    "Bachiller" => "Bachiller",
+    "Técnico" => "Técnico",
+    "Tecnólogo" => "Tecnólogo",
+    "Profesional" => "Profesional",
+    "Profesional Especializado" => "Profesional Especializado",
+];
 
-/* @var $this yii\web\View */
-/* @var $model app\models\concejal */
-/* @var $form yii\widgets\ActiveForm */
+$dataOrden = [
+    "1" => "1",
+    "2" => "2",
+    "3" => "3",
+    "4" => "4",
+    "5" => "5",
+];
+
 ?>
 
 <div class="concejal-form">
@@ -24,24 +40,43 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'correo_electronico')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'municipio')->textInput(['maxlength' => true]) ?>
+    <?php    // Normal select with ActiveForm & model
+        echo $form->field($model, 'municipio')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(municipio::find()->orderBy(['nombre_mun'=>SORT_ASC])->all(),'nombre_mun','nombre_mun'),
+            'language' => 'es',
+            'options' => ['placeholder' => 'Seleccione un municipio ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ]
+        ]); 
+    ?>
+    
+    <?php    // Normal select with ActiveForm & model
+        echo $form->field($model, 'escolaridad')->widget(Select2::classname(), [
+            'data' => $dataEscolaridad,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Seleccione un grado de escolaridad ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ]
+        ]); 
+    ?>
 
-    <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'escolaridad')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'orden')->textInput() ?>
+    <?php    // Normal select with ActiveForm & model
+        echo $form->field($model, 'orden')->widget(Select2::classname(), [
+            'data' => $dataOrden,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Seleccione el orden en el listado ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ]
+        ]); 
+    ?>
 
     <?= $form->field($model, 'clave')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_tipousuario')->textInput() ?>
-
-    <?= $form->field($model, 'dt_registro')->textInput() ?>
-
-    <?= $form->field($model, 'dt_actualizacion')->textInput() ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
