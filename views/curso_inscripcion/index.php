@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\curso_inscripcionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Curso Inscripcions';
+$this->title = 'Inscripciones Educación';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="curso-inscripcion-index">
