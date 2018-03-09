@@ -42,7 +42,7 @@ class diputado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'partido', 'biografia'], 'required'],
+            [['nombre', 'partido', 'biografia', 'genero'], 'required'],
             [['genero'], 'string'],
             [['nombre', 'partido', 'telefono', 'correo', 'telefono2', 'cargo', 'orden', 'municipio_origen', 'redes_sociales'], 'string', 'max' => 100],
             [['biografia'], 'string', 'max' => 2048],

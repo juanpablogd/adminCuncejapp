@@ -8,6 +8,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Concejales';
+$this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['site/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="concejal-index">

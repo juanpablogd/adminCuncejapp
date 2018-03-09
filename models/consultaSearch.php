@@ -18,8 +18,8 @@ class consultaSearch extends consulta
     public function rules()
     {
         return [
-            [['id', 'celular', 'id_concejal'], 'integer'],
-            [['apellidos', 'nombres', 'cargo', 'cedula', 'correo_electronico', 'municipio', 'consulta', 'actualizar_datos', 'fecha'], 'safe'],
+            [['id'], 'integer'],
+            [['apellidos', 'nombres', 'cedula', 'consulta', 'fecha', 'tipo'], 'safe'],
         ];
     }
 
@@ -47,6 +47,9 @@ class consultaSearch extends consulta
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['attributes' => ['apellidos', 'nombres', 'cedula', 'consulta', 'fecha', 'tipo'],
+                        'defaultOrder' => ['fecha'=>SORT_DESC]
+                        ]
         ]);
 
         $this->load($params);
@@ -57,22 +60,18 @@ class consultaSearch extends consulta
             return $dataProvider;
         }
 
+         $query->joinWith('idCcConcejal');
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'celular' => $this->celular,
             'fecha' => $this->fecha,
-            'id_concejal' => $this->id_concejal,
         ]);
 
-        $query->andFilterWhere(['ilike', 'apellidos', $this->apellidos])
-            ->andFilterWhere(['ilike', 'nombres', $this->nombres])
-            ->andFilterWhere(['ilike', 'cargo', $this->cargo])
-            ->andFilterWhere(['ilike', 'cedula', $this->cedula])
-            ->andFilterWhere(['ilike', 'correo_electronico', $this->correo_electronico])
-            ->andFilterWhere(['ilike', 'municipio', $this->municipio])
+        $query->andFilterWhere(['ilike', 'concejal.apellidos', $this->apellidos])
+            ->andFilterWhere(['ilike', 'concejal.nombres', $this->nombres])
+            ->andFilterWhere(['ilike', 'consulta.cedula', $this->cedula])
             ->andFilterWhere(['ilike', 'consulta', $this->consulta])
-            ->andFilterWhere(['ilike', 'actualizar_datos', $this->actualizar_datos])
+            ->andFilterWhere(['ilike', 'tipo', $this->tipo])
             ->orderBy('fecha DESC');
 
         return $dataProvider;

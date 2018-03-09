@@ -6,7 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\consulta */
 
-$this->title = $model->id;
+$this->title = $model->nombres." ".$model->apellidos;
+$this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['site/admin']];
 $this->params['breadcrumbs'][] = ['label' => 'Consultas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Seguro qué desea eliminar este elemento?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,18 +29,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'apellidos',
-            'nombres',
-            'cargo',
             'cedula',
-            'celular',
-            'correo_electronico',
-            'municipio',
+            [
+                'label' => 'Nombres',
+                'format' => 'ntext',
+                'attribute'=>'nombres',
+                'value' => function($model) {
+                    return $model->idCcConcejal['nombres'];
+                },
+            ],
+            [
+                'label' => 'Apellidos',
+                'format' => 'ntext',
+                'attribute'=>'apellidos',
+                'value' => function($model) {
+                    return $model->idCcConcejal['apellidos'];
+                },
+            ],
             'consulta',
-            'actualizar_datos',
             'fecha',
-            'id_concejal',
+            'tipo',
         ],
     ]) ?>
 

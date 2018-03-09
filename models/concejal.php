@@ -74,11 +74,16 @@ class concejal extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getfullName()
+    {
+            return $this->nombres.' '.$this->apellidos;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getConsulta()
     {
-        return $this->hasMany(consulta::className(), ['id_cc_concejal' => 'cedula']);
+        return $this->hasMany(consulta::className(), ['cedula' => 'cedula']);
     }
 }

@@ -36,9 +36,9 @@ $dataOrden = [
 
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'telefono2')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cargo')->textInput(['maxlength' => true]) ?>
 

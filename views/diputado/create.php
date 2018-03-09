@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\diputado */
 
-$this->title = 'Create Diputado';
+$this->title = 'Crear Diputado';
 $this->params['breadcrumbs'][] = ['label' => 'Diputados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
