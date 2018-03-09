@@ -13,7 +13,6 @@ $this->title = 'Consultas';
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['site/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 
-
 $gridColumns = [
             ['class' => 'yii\grid\SerialColumn'],
             'cedula',
@@ -72,9 +71,10 @@ $gridColumns = [
                 'class' => 'btn btn-default'
             ]
         ])."\n".
-        GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => $gridColumns,
-    ]); ?>
+            GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => $gridColumns,
+        ]); 
+    ?>
 </div>

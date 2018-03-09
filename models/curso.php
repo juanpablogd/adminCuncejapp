@@ -79,4 +79,11 @@ class curso extends \yii\db\ActiveRecord
             'tipocurso' => 'Tipocurso',
         ];
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInscripcion()
+    {
+        return $this->hasMany(consulta::className(), ['id_curso' => 'id']);
+    }
 }

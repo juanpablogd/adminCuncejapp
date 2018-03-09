@@ -57,7 +57,8 @@ $config = [
             'class' => 'yii\i18n\[b]F[/b]ormatter',
             'thousandSeparator' => ',',
             'decimalSeparator' => '.',
-            'currencyCode' => '$'
+            'currencyCode' => '$',
+            'dateFormat' => 'php:Y-M-d',
         ],
     ],
     'params' => $params,
