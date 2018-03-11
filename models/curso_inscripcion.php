@@ -30,8 +30,8 @@ class curso_inscripcion extends \yii\db\ActiveRecord
         return [
             [['id_curso'], 'default', 'value' => null],
             [['id_curso'], 'integer'],
-            [['cedula'], 'required'],
-            ['fecha_inscripcion', 'date', 'format' => 'yyyy-M-d H:m:s'],
+            [['fecha_inscripcion','id_curso','fecha_inscripcion'], 'required'],
+            [['fecha'], 'safe'],
             [['cedula'], 'string', 'max' => 100],
             [['cedula'], 'exist', 'skipOnError' => true, 'targetClass' => concejal::className(), 'targetAttribute' => ['cedula' => 'cedula']],
             [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => curso::className(), 'targetAttribute' => ['id_curso' => 'id']],
@@ -45,9 +45,9 @@ class curso_inscripcion extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_curso' => 'Id Curso',
-            'cedula' => 'Cedula',
-            'fecha_inscripcion' => 'Fecha Inscripcion',
+            'id_curso' => 'Curso',
+            'cedula' => 'Estudiante',
+            'fecha_inscripcion' => 'Fecha Inscripción',
         ];
     }
 

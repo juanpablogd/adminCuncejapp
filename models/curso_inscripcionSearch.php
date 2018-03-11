@@ -12,6 +12,9 @@ use app\models\curso_inscripcion;
  */
 class curso_inscripcionSearch extends curso_inscripcion
 {
+    var $nombres;
+    var $apellidos;
+    var $titulo;
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class curso_inscripcionSearch extends curso_inscripcion
     {
         return [
             [['id', 'id_curso'], 'integer'],
-            [['cedula', 'fecha_inscripcion'], 'safe'],
+            [['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo'], 'safe'],
         ];
     }
 
@@ -47,6 +50,9 @@ class curso_inscripcionSearch extends curso_inscripcion
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['attributes' => ['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo'],
+                        'defaultOrder' => ['fecha_inscripcion'=>SORT_DESC]
+                        ]
         ]);
 
         $this->load($params);
@@ -57,14 +63,25 @@ class curso_inscripcionSearch extends curso_inscripcion
             return $dataProvider;
         }
 
+        $query->joinWith('idCcConcejal');
+        $query->joinWith('idCurso');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'id_curso' => $this->id_curso,
-            'fecha_inscripcion' => $this->fecha_inscripcion,
         ]);
 
-        $query->andFilterWhere(['ilike', 'cedula', $this->cedula]);
+        $query->andFilterWhere(['ilike', 'concejal.cedula', $this->cedula])
+            ->andFilterWhere(['ilike', 'concejal.apellidos', $this->apellidos])
+            ->andFilterWhere(['ilike', 'concejal.nombres', $this->nombres])
+            ->andFilterWhere(['ilike', 'curso.titulo', $this->titulo]);
+
+        if ($this->fecha_inscripcion != ''){
+            $query->andFilterWhere(['>', 'fecha_inscripcion', $this->fecha_inscripcion." 00:00:00"]);
+            $query->andFilterWhere(['<', 'fecha_inscripcion', $this->fecha_inscripcion." 23:59:59"]);            
+        }
+
 
         return $dataProvider;
     }

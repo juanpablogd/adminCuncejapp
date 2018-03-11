@@ -41,6 +41,8 @@ class encuesta_concejal extends \yii\db\ActiveRecord
     {
         return [
             [['respuesta_1', 'respuesta_2', 'respuesta_3', 'respuesta_4', 'respuesta_5', 'respuesta_6', 'respuesta_7', 'respuesta_8', 'respuesta_9', 'respuesta_10', 'respuesta_11', 'respuesta_12', 'respuesta_13'], 'string', 'max' => 45],
+            [['fecha_sis'], 'safe'],
+            [['cedula','respuesta_1', 'respuesta_2', 'respuesta_3', 'respuesta_4', 'respuesta_5', 'respuesta_6', 'respuesta_7', 'respuesta_8', 'respuesta_9', 'respuesta_10', 'respuesta_11', 'respuesta_12', 'respuesta_13','fecha_sis'], 'required'],
             [['texto_opcional'], 'string', 'max' => 256],
             [['cedula'], 'string', 'max' => 100],
             [['cedula'], 'exist', 'skipOnError' => true, 'targetClass' => concejal::className(), 'targetAttribute' => ['cedula' => 'cedula']],
@@ -54,8 +56,8 @@ class encuesta_concejal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'respuesta_1' => 'Respuesta 1',
-            'respuesta_2' => 'Respuesta 2',
+            'respuesta_1' => '¿Cómo le parece esta nueva herramienta tecnológica móvil?',
+            'respuesta_2' => '¿Cómo le pareció el acceso a esta nueva herramienta tecnológica?',
             'respuesta_3' => 'Respuesta 3',
             'respuesta_4' => 'Respuesta 4',
             'respuesta_5' => 'Respuesta 5',
@@ -70,5 +72,13 @@ class encuesta_concejal extends \yii\db\ActiveRecord
             'texto_opcional' => 'Texto Opcional',
             'cedula' => 'Cedula',
         ];
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdCcConcejal()
+    {
+        return $this->hasOne(concejal::className(), ['cedula' => 'cedula']);
     }
 }

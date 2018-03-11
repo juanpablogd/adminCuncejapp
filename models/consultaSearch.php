@@ -60,7 +60,7 @@ class consultaSearch extends consulta
             return $dataProvider;
         }
 
-         $query->joinWith('idCcConcejal');
+        $query->joinWith('idCcConcejal');
 
         // grid filtering conditions
         $query->andFilterWhere([
