@@ -93,4 +93,11 @@ class concejal extends \yii\db\ActiveRecord
     {
         return $this->hasMany(curso_inscripcion::className(), ['cedula' => 'cedula']);
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEncuesta()
+    {
+        return $this->hasMany(encuesta_concejal::className(), ['cedula' => 'cedula']);
+    }
 }

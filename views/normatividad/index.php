@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
+Yii::setAlias('@nomurl', 'http://saga.cundinamarca.gov.co/SIG/data/doc/cuncejapp/normatividad/');
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\normatividadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Normatividads';
+$this->title = 'Normatividad';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="normatividad-index">
@@ -16,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Normatividad', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Normatividad', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,12 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'num',
             'epigrafe',
-            'url:url',
             'fecha',
+            [
+                'label' => 'url',
+                'format' => 'raw',
+                'attribute'=>'url',
+                'value' => function($model) {
+                    return Html::a('pdf',$model->fullUrl,['target' => '_blank','class' => 'testClass']) ;
+                },
+            ],
             //'claves',
             //'ley',
             //'orden',

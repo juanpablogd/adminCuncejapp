@@ -12,6 +12,8 @@ use app\models\encuesta_concejal;
  */
 class encuesta_concejalSearch extends encuesta_concejal
 {
+    var $nombres;
+    var $apellidos;
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class encuesta_concejalSearch extends encuesta_concejal
     {
         return [
             [['id'], 'integer'],
-            [['respuesta_1', 'respuesta_2', 'respuesta_3', 'respuesta_4', 'respuesta_5', 'respuesta_6', 'respuesta_7', 'respuesta_8', 'respuesta_9', 'respuesta_10', 'respuesta_11', 'respuesta_12', 'respuesta_13', 'texto_opcional', 'cedula'], 'safe'],
+            [['apellidos', 'nombres','respuesta_1', 'respuesta_2', 'respuesta_3', 'respuesta_4', 'respuesta_5', 'respuesta_6', 'respuesta_7', 'respuesta_8', 'respuesta_9', 'respuesta_10', 'respuesta_11', 'respuesta_12', 'respuesta_13', 'texto_opcional', 'cedula'], 'safe'],
         ];
     }
 
@@ -47,6 +49,9 @@ class encuesta_concejalSearch extends encuesta_concejal
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['attributes' => ['apellidos', 'nombres', 'cedula', 'fecha_sis'],
+                        'defaultOrder' => ['fecha_sis'=>SORT_DESC]
+                        ]
         ]);
 
         $this->load($params);
@@ -56,6 +61,8 @@ class encuesta_concejalSearch extends encuesta_concejal
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $query->joinWith('idCcConcejal');
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -76,7 +83,14 @@ class encuesta_concejalSearch extends encuesta_concejal
             ->andFilterWhere(['ilike', 'respuesta_12', $this->respuesta_12])
             ->andFilterWhere(['ilike', 'respuesta_13', $this->respuesta_13])
             ->andFilterWhere(['ilike', 'texto_opcional', $this->texto_opcional])
-            ->andFilterWhere(['ilike', 'cedula', $this->cedula]);
+            ->andFilterWhere(['ilike', 'cedula', $this->cedula])
+            ->andFilterWhere(['ilike', 'concejal.apellidos', $this->apellidos])
+            ->andFilterWhere(['ilike', 'concejal.nombres', $this->nombres]);
+
+        if ($this->fecha_sis != ''){
+            $query->andFilterWhere(['>', 'fecha_sis', $this->fecha_sis." 00:00:00"]);
+            $query->andFilterWhere(['<', 'fecha_sis', $this->fecha_sis." 23:59:59"]);            
+        }
 
         return $dataProvider;
     }

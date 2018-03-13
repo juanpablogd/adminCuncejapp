@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use kartik\date\DatePicker;
+use kartik\export\ExportMenu;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\encuesta_concejalSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Encuesta Concejals';
+$this->title = 'Encuesta Concejales';
+$this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['site/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="encuesta-concejal-index">
@@ -16,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Encuesta Concejal', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Encuesta Concejal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,23 +26,37 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'respuesta_1',
-            'respuesta_2',
-            'respuesta_3',
-            'respuesta_4',
-            //'respuesta_5',
-            //'respuesta_6',
-            //'respuesta_7',
-            //'respuesta_8',
-            //'respuesta_9',
-            //'respuesta_10',
-            //'respuesta_11',
-            //'respuesta_12',
-            //'respuesta_13',
-            //'texto_opcional',
-            //'cedula',
+            'cedula',
+            [
+                'label' => 'Nombres',
+                'format' => 'ntext',
+                'attribute'=>'nombres',
+                'value' => function($model) {
+                    return $model->idCcConcejal['nombres'];
+                },
+            ],
+            [
+                'label' => 'Apellidos',
+                'format' => 'ntext',
+                'attribute'=>'apellidos',
+                'value' => function($model) {
+                    return $model->idCcConcejal['apellidos'];
+                },
+            ],
+            [   'attribute' => 'fecha_sis',
+                'value' => 'fecha_sis',
+                'format' => 'raw',
+                'filter' => DatePicker::widget([
+                            'model' => $searchModel,
+                            'name' => 'fecha_sis',
+                            'attribute' => 'fecha_sis',
+                            'options' => ['placeholder' => 'Seleccione Fecha...'],
+                            'pluginOptions' => [
+                                'format' => 'yyyy-mm-dd',
+                                'autoclose' => true,
+                            ]
+                        ]),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

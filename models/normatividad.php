@@ -33,17 +33,22 @@ class normatividad extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'num', 'epigrafe', 'claves'], 'required'],
-            [['id', 'orden'], 'default', 'value' => null],
-            [['id', 'orden'], 'integer'],
-            [['tipo'], 'string'],
+            [['num', 'epigrafe', 'claves','categoria','subcategoria','fecha','tipo', 'orden'], 'required'],
+            [[ 'orden'], 'default', 'value' => null],
+            [['orden'], 'integer'],
+            [['tipo','categoria','subcategoria'], 'string'],
             [['num'], 'string', 'max' => 256],
             [['epigrafe', 'claves'], 'string', 'max' => 1024],
             [['url'], 'string', 'max' => 103],
             [['fecha'], 'string', 'max' => 105],
             [['ley'], 'string', 'max' => 107],
-            [['id'], 'unique'],
+            [['num'], 'unique'],
         ];
+    }
+
+    public function getfullUrl()
+    {
+            return 'http://saga.cundinamarca.gov.co/SIG/data/doc/cuncejapp/normatividad/'.$this->url;
     }
 
     /**
@@ -61,6 +66,8 @@ class normatividad extends \yii\db\ActiveRecord
             'ley' => 'Ley',
             'orden' => 'Orden',
             'tipo' => 'Tipo',
+            'categoria' => 'Categoria',
+            'subcategoria' => 'Subcategoria',
         ];
     }
 }

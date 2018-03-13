@@ -38,18 +38,18 @@ use kartik\date\DatePicker;
         ]); 
     ?>
 
-<?php
-    echo DatePicker::widget([
-        'model' => $model,
-        'attribute' => 'fecha_inscripcion',
-        'options' => ['placeholder' => 'Seleccione Fecha inscripción...'],
-        'form' => $form,
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'autoclose' => true,
-        ]
-    ]);
-?>
+    <?php
+        echo DatePicker::widget([
+            'model' => $model,
+            'attribute' => 'fecha_inscripcion',
+            'options' => ['placeholder' => 'Seleccione Fecha inscripción...'],
+            'form' => $form,
+            'pluginOptions' => [
+                'format' => 'yyyy-mm-dd',
+                'autoclose' => true,
+            ]
+        ]);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

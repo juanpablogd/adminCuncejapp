@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\normatividad */
 
-$this->title = 'Update Normatividad: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Normatividads', 'url' => ['index']];
+$this->title = 'Actualizar Normatividad: '.$model->num;
+$this->params['breadcrumbs'][] = ['label' => 'Normatividad', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="normatividad-update">
 

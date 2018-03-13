@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\encuesta_concejal */
 
-$this->title = 'Update Encuesta Concejal: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Encuesta Concejals', 'url' => ['index']];
+$this->title = 'Actualizar Encuesta Concejal: '.$model->cedula;
+$this->params['breadcrumbs'][] = ['label' => 'Encuesta Concejales', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="encuesta-concejal-update">
 
