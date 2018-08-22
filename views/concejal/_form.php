@@ -22,6 +22,18 @@ $dataOrden = [
     "5" => "5",
 ];
 
+$dataTipo = [   "CONCEJAL" => "CONCEJAL",
+                "EXTERNO" => "EXTERNO",
+                "GOBERNACION" => "GOBERNACION",
+                "PRESIDENTE(A)" => "PRESIDENTE(A)",
+                "SECRETARIA GENERAL" => "SECRETARIA GENERAL",
+                "SECRETARIA" => "SECRETARIA",
+                "SECRETARIO(A) APOYO " => "SECRETARIO(A) APOYO ",
+                "SECRETARIO(A) CONCEJO" => "SECRETARIO(A) CONCEJO",
+                "SECRETARIO(A) ENCARGADA" => "SECRETARIO(A) ENCARGADA",
+                "SECRETARIO(A) EXTERNO" => "SECRETARIO(A) EXTERNO",
+                "VICEPRESIDENTE(A) 1" => "VICEPRESIDENTE(A) 1",
+                "VICEPRESIDENTE(A) 2" => "VICEPRESIDENTE(A) 2" ];
 ?>
 
 <div class="concejal-form">
@@ -32,7 +44,7 @@ $dataOrden = [
 
     <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cargo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cargo')->dropDownList($dataTipo , ['prompt' => '']) ?>
 
     <?= $form->field($model, 'cedula')->textInput(['maxlength' => true]) ?>
 

@@ -21,6 +21,7 @@ $gridColumns = [
             'correo_electronico',
             'municipio',
             'provincia',
+            'cargo',
             'escolaridad',
             ['class' => 'yii\grid\ActionColumn'],
         ];
