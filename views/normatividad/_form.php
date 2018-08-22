@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\normatividad */
 /* @var $form yii\widgets\ActiveForm */
@@ -15,7 +16,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'epigrafe')->textarea(['rows' => '4']) ?>
 
-    <?= $form->field($model, 'fecha')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form->field($model, 'fecha')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha ...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
+        ]);
+    ?>
 
     <?= $form->field($model, 'claves')->textarea(['rows' => '4']) ?>
 

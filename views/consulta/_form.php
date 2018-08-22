@@ -13,6 +13,14 @@ $dataTipo = [
     "TELEFONO" => "TELEFONO",
 ];
 
+$dataProfesional = [
+    "JOSE GABRIEL FERNANDEZ CIFUENTES" => "JOSE GABRIEL FERNANDEZ CIFUENTES",
+    "HERNAN ROGELIO GARZON SANCHEZ" => "HERNAN ROGELIO GARZON SANCHEZ",
+    "LUIS HERNANDO VANEGAS CEDIEL" => "LUIS HERNANDO VANEGAS CEDIEL",
+    "HENRY MAURICIO FLOREZ  SEGURA" => "HENRY MAURICIO FLOREZ  SEGURA",
+    "WILSON LEONARDO REY ROMERO" => "WILSON LEONARDO REY ROMERO",
+];
+
 /* @var $this yii\web\View */
 /* @var $model app\models\consulta */
 /* @var $form yii\widgets\ActiveForm */
@@ -35,18 +43,19 @@ $dataTipo = [
 
     <?= $form->field($model, 'consulta')->textarea(['rows' => '5']) ?>
 
-<?php
-    echo DatePicker::widget([
-        'model' => $model,
-        'attribute' => 'fecha',
-        'options' => ['placeholder' => 'Seleccione Fecha...'],
-        'form' => $form,
-        'pluginOptions' => [
-            'format' => 'yyyy-mm-dd',
-            'autoclose' => true,
-        ]
-    ]);
-?>
+    <?=
+        $form->field($model, 'fecha')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
+        ]);
+    ?>
 
     <?php    // Normal select with ActiveForm & model
         echo $form->field($model, 'tipo')->widget(Select2::classname(), [
@@ -58,6 +67,33 @@ $dataTipo = [
             ]
         ]); 
     ?>
+
+    <?php    // Normal select with ActiveForm & model
+        echo $form->field($model, 'atentido_por')->widget(Select2::classname(), [
+            'data' => $dataProfesional,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Seleccione el profesional que atendió la consulta ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ]
+        ]); 
+    ?>
+
+    <?=
+        $form->field($model, 'fecha_atencion')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha de atención...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
+        ]);
+    ?>
+
+    <?= $form->field($model, 'resumen_respuesta')->textarea(['rows' => '5']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

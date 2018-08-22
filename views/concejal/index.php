@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use kartik\date\DatePicker;
+use kartik\export\ExportMenu;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\concejalSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -10,6 +11,21 @@ use yii\grid\GridView;
 $this->title = 'Concejales';
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['site/admin']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$gridColumns = [
+            ['class' => 'yii\grid\SerialColumn'],
+            'apellidos',
+            'nombres',
+            'cedula',
+            'telefono',
+            'correo_electronico',
+            'municipio',
+            'provincia',
+            'escolaridad',
+            ['class' => 'yii\grid\ActionColumn'],
+        ];
+
+
 ?>
 <div class="concejal-index">
 
@@ -20,29 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Crear Concejal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'apellidos',
-            'nombres',
-            //'cargo',
-            'cedula',
-            'telefono',
-            'correo_electronico',
-            'municipio',
-            //'provincia',
-            //'escolaridad',
-            //'orden',
-            //'clave',
-            //'id_tipousuario',
-            //'dt_registro',
-            //'dt_actualizacion',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+    <?= 
+        ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'fontAwesome' => true,
+            'dropdownOptions' => [
+                'label' => 'Exportar',
+                'class' => 'btn btn-default'
+            ]
+        ])."\n".
+            GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => $gridColumns,
+        ]); 
+    ?>
 </div>

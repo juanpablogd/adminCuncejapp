@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\curso */
 /* @var $form yii\widgets\ActiveForm */
@@ -15,8 +15,34 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'institucion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
+    
+    <?=
+        $form->field($model, 'fecha_inscripcion')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha de inscripción...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
+        ]);
+    ?>
 
-    <?= $form->field($model, 'fecha_inicio')->textInput() ?>
+    <?=
+        $form->field($model, 'fecha_inicio')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha de inicio...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
+        ]);
+    ?>
 
     <?= $form->field($model, 'modalidad')->textInput(['maxlength' => true]) ?>
 
@@ -27,6 +53,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'dirigido')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'objetivo')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'limite_cupos')->textInput() ?>
 
     <?= $form->field($model, 'metodologia')->textInput(['maxlength' => true]) ?>
 
@@ -40,12 +68,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'url_imagen')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'tipocurso')->dropDownList([ 'Formal' => 'Formal', 'cursoESAP' => 'CursoESAP', 'cursoGob' => 'CursoGob', 'pregradoESAP' => 'pregradoESAP', 'posgradoESAP' => 'posgradoESAP', 'Convocatoria' => 'Convocatoria' , 'diplomadoRosario' => 'diplomadoRosario' ], ['prompt' => '']) ?>
+
     <?= $form->field($model, 'activo')->dropDownList([ 'SI' => 'SI', 'NO' => 'NO', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'tipocurso')->dropDownList([ 'Formal' => 'Formal', 'cursoESAP' => 'CursoESAP', 'cursoGob' => 'CursoGob', ], ['prompt' => '']) ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

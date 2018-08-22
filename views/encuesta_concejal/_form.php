@@ -33,16 +33,17 @@ $dataOrden = [
         ]); 
     ?>
 
-    <?php
-        echo DatePicker::widget([
-            'model' => $model,
-            'attribute' => 'fecha_sis',
-            'options' => ['placeholder' => 'Seleccione Fecha ...'],
-            'form' => $form,
-            'pluginOptions' => [
-                'format' => 'yyyy-mm-dd',
-                'autoclose' => true,
-            ]
+    <?=
+        $form->field($model, 'fecha_sis')->widget(DatePicker::className(),[
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                'removeButton' => ['icon' => 'trash'],
+                'pickerButton' => false,
+                'options' => ['placeholder' => 'Seleccione Fecha ...'],
+                'pluginOptions' => [
+                    'format' => 'yyyy-mm-dd',
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                ]
         ]);
     ?>
 

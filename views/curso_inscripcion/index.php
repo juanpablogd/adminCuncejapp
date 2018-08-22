@@ -32,6 +32,14 @@ $gridColumns = [
                 },
             ],
             [
+                'label' => 'Teléfono',
+                'format' => 'ntext',
+                'attribute'=>'telefono',
+                'value' => function($model) {
+                    return $model->idCcConcejal['telefono'];
+                },
+            ],
+            [
                 'label' => 'Título',
                 'format' => 'ntext',
                 'attribute'=>'titulo',

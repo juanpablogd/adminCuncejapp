@@ -50,6 +50,8 @@ $dataOrden = [
             ]
         ]); 
     ?>
+
+    <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
     
     <?php    // Normal select with ActiveForm & model
         echo $form->field($model, 'escolaridad')->widget(Select2::classname(), [
