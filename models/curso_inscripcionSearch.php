@@ -15,6 +15,9 @@ class curso_inscripcionSearch extends curso_inscripcion
     var $nombres;
     var $apellidos;
     var $titulo;
+    var $correo_electronico;
+    var $municipio;
+    var $telefono;
     /**
      * @inheritdoc
      */
@@ -22,7 +25,7 @@ class curso_inscripcionSearch extends curso_inscripcion
     {
         return [
             [['id', 'id_curso'], 'integer'],
-            [['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo'], 'safe'],
+            [['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo','telefono','municipio','correo_electronico'], 'safe'],
         ];
     }
 
@@ -50,7 +53,7 @@ class curso_inscripcionSearch extends curso_inscripcion
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['attributes' => ['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo'],
+            'sort' => ['attributes' => ['apellidos', 'nombres', 'cedula', 'fecha_inscripcion','titulo','telefono','municipio','correo_electronico'],
                         'defaultOrder' => ['fecha_inscripcion'=>SORT_DESC]
                         ]
         ]);
@@ -73,8 +76,11 @@ class curso_inscripcionSearch extends curso_inscripcion
         ]);
 
         $query->andFilterWhere(['ilike', 'concejal.cedula', $this->cedula])
-            ->andFilterWhere(['ilike', 'concejal.apellidos', $this->apellidos])
             ->andFilterWhere(['ilike', 'concejal.nombres', $this->nombres])
+            ->andFilterWhere(['ilike', 'concejal.apellidos', $this->apellidos])
+            ->andFilterWhere(['ilike', 'concejal.telefono', $this->telefono])
+            ->andFilterWhere(['ilike', 'concejal.municipio', $this->municipio])
+            ->andFilterWhere(['ilike', 'concejal.correo_electronico', $this->correo_electronico])
             ->andFilterWhere(['ilike', 'curso.titulo', $this->titulo]);
 
         if ($this->fecha_inscripcion != ''){

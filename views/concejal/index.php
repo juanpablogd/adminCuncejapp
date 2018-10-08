@@ -1,4 +1,6 @@
 <?php
+ini_set("pcre.backtrack_limit", "50000000");
+ini_set('memory_limit', '-1');
 
 use yii\helpers\Html;
 use yii\grid\GridView;

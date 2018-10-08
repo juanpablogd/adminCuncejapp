@@ -1,4 +1,6 @@
 <?php
+ini_set("pcre.backtrack_limit", "50000000");
+ini_set('memory_limit', '-1');
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -37,6 +39,22 @@ $gridColumns = [
                 'attribute'=>'telefono',
                 'value' => function($model) {
                     return $model->idCcConcejal['telefono'];
+                },
+            ],
+            [
+                'label' => 'Correo',
+                'format' => 'ntext',
+                'attribute'=>'correo_electronico',
+                'value' => function($model) {
+                    return $model->idCcConcejal['correo_electronico'];
+                },
+            ],
+            [
+                'label' => 'Municipio',
+                'format' => 'ntext',
+                'attribute'=>'municipio',
+                'value' => function($model) {
+                    return $model->idCcConcejal['municipio'];
                 },
             ],
             [

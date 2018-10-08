@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\municipio;
 $dataEscolaridad = [
+    "Sin estudios" => "Sin estudios",
     "Primaria" => "Primaria",
     "Bachiller" => "Bachiller",
     "Técnico" => "Técnico",
